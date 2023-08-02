@@ -51,7 +51,7 @@ namespace SkinCommand
         {
             if (!e.ChatMessage.Message.Contains("!skin")) return;
             _client.SendMessage(e.ChatMessage.Channel, "The current skin i am using is: " + Program.BaseAddresses.Skin.Folder);
-            _client.SendMessage(e.ChatMessage.Channel, "You can find it inside this google drive folder: " + Startup.ApiSettings.folderLink);
+         //   _client.SendMessage(e.ChatMessage.Channel, "You can find it inside this google drive folder: " + Startup.ApiSettings.folderLink);
         }
     }
 }
