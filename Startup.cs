@@ -17,6 +17,6 @@ namespace SkinCommand
 
         }
 
-        public ApiSettings ApiSettings { get; private set; }
+        public static ApiSettings ApiSettings { get; private set; }
     }
 }

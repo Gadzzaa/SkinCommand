@@ -10,11 +10,11 @@ namespace SkinCommand
     internal class Bot
     {
         public readonly TwitchClient _client;
+        Startup startup = new Startup();
 
         public Bot()
         {
-            Startup startup = new Startup();
-            ConnectionCredentials credentials = new ConnectionCredentials(startup.ApiSettings.botUser, startup.ApiSettings.botOAuth);
+            ConnectionCredentials credentials = new ConnectionCredentials(Startup.ApiSettings.botUser, Startup.ApiSettings.botOAuth);
             ClientOptions clientOptions = new ClientOptions
             {
                 MessagesAllowedInPeriod = 750,
@@ -22,7 +22,7 @@ namespace SkinCommand
             };
             WebSocketClient customClient = new WebSocketClient(clientOptions);
             _client = new TwitchClient(customClient);
-            _client.Initialize(credentials, startup.ApiSettings.channel);
+            _client.Initialize(credentials, Startup.ApiSettings.channel);
 
             _client.OnLog += Client_OnLog;
             _client.OnJoinedChannel += Client_OnJoinedChannel;
@@ -51,7 +51,7 @@ namespace SkinCommand
         {
             if (!e.ChatMessage.Message.Contains("!skin")) return;
             _client.SendMessage(e.ChatMessage.Channel, "The current skin i am using is: " + Program.BaseAddresses.Skin.Folder);
-            _client.SendMessage(e.ChatMessage.Channel, "You can find it inside this google drive folder: https://drive.google.com/drive/folders/1qr11XQHWiSLdlcUiWyiQgTRaDtUogDuE?usp=sharing");
+            _client.SendMessage(e.ChatMessage.Channel, "You can find it inside this google drive folder: " + Startup.ApiSettings.folderLink);
         }
     }
 }
